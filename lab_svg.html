@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Лабораторна: SVG, варіант 5</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; }
+    svg  { background: #fff; }
+  </style>
+</head>
+<body>
+
+  <svg width="710" height="470" viewBox="0 0 710 470"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <defs>
+      <circle id="ball" cx="0" cy="0" r="40"/>
+      <rect id="rect2x1" x="0" y="0" width="80" height="40"/>
+      <symbol id="square" viewBox="0 0 40 40">
+        <rect x="0" y="0" width="40" height="40"/>
+      </symbol>
+    </defs>
+
+  
+    <g id="axes" stroke="#000" stroke-width="1.2" fill="none">
+      <line x1="40"  y1="140" x2="435" y2="140"/>
+      <line x1="200" y1="270" x2="200" y2="25"/>
+      <polyline points="426,134 438,140 426,146"/>
+      <polyline points="194,37 200,22 206,37"/>
+    </g>
+
+    <g id="ticks" stroke="#000" stroke-width="1">
+      <line x1="80"  y1="136" x2="80"  y2="144"/>
+      <line x1="120" y1="136" x2="120" y2="144"/>
+      <line x1="160" y1="136" x2="160" y2="144"/>
+      <line x1="240" y1="136" x2="240" y2="144"/>
+      <line x1="280" y1="136" x2="280" y2="144"/>
+      <line x1="320" y1="136" x2="320" y2="144"/>
+      <line x1="360" y1="136" x2="360" y2="144"/>
+      <line x1="400" y1="136" x2="400" y2="144"/>
+
+      <line x1="196" y1="60"  x2="204" y2="60"/>
+      <line x1="196" y1="100" x2="204" y2="100"/>
+      <line x1="196" y1="180" x2="204" y2="180"/>
+      <line x1="196" y1="220" x2="204" y2="220"/>
+      <line x1="196" y1="260" x2="204" y2="260"/>
+    </g>
+
+    <g id="labels" font-size="13" font-family="Times New Roman, serif" fill="#000">
+      <text x="74"  y="132">-3</text>
+      <text x="114" y="132">-2</text>
+      <text x="154" y="132">-1</text>
+      <text x="188" y="154">0</text>
+      <text x="237" y="132">1</text>
+      <text x="277" y="132">2</text>
+      <text x="317" y="132">3</text>
+      <text x="357" y="132">4</text>
+      <text x="397" y="132">5</text>
+
+      <text x="178" y="64">2</text>
+      <text x="178" y="104">1</text>
+      <text x="172" y="184">-1</text>
+      <text x="172" y="224">-2</text>
+      <text x="172" y="264">-3</text>
+
+      <text x="440" y="158" font-style="italic">X</text>
+      <text x="210" y="26"  font-style="italic">Y</text>
+    </g>
+
+    <g id="figure" fill="#0000ff" stroke="#000080" stroke-width="1">
+      <use id="circle1" xlink:href="#ball" href="#ball" x="120" y="100"/>
+      <use id="circle2" xlink:href="#ball" href="#ball" x="240" y="100"/>
+
+      <use id="rect1" xlink:href="#rect2x1" href="#rect2x1" x="80"  y="140"/>
+      <use id="rect2" xlink:href="#rect2x1" href="#rect2x1" x="240" y="220"/>
+
+      <use id="sq1" xlink:href="#square" href="#square" x="280" y="60"  width="40" height="40"/>
+      <use id="sq2" xlink:href="#square" href="#square" x="320" y="100" width="40" height="40"/>
+      <use id="sq3" xlink:href="#square" href="#square" x="200" y="180" width="40" height="40"/>
+      <use id="sq4" xlink:href="#square" href="#square" x="360" y="180" width="40" height="40"/>
+
+      <polygon id="diamond" points="320,140 360,180 320,220 280,180"/>
+    </g>
+
+    <g id="curve-text">
+      <path id="curve" d="M 30,400 C 110,320 190,320 240,385 S 370,450 450,350"
+            fill="none" stroke="#bbb" stroke-width="1" stroke-dasharray="4 3"/>
+      <text font-size="18" font-family="Arial, sans-serif" fill="#c00000">
+        <textPath xlink:href="#curve" href="#curve" startOffset="0">
+          Лабораторна робота з веб-програмування, варіант 5
+        </textPath>
+      </text>
+    </g>
+
+    <g id="animations" transform="translate(480,10)">
+      <g fill="#0000ff" stroke="#000080" stroke-width="1">
+        <ellipse id="a_color" cx="115" cy="45" rx="55" ry="28">
+          <animate attributeName="fill", values="#0000ff;#ff0000;#00aa00;#ffcc00;#0000ff", dur="6s" repeatCount="indefinite"/>
+        </ellipse>
+
+
+        <circle id="a_move" cx="40" cy="135" r="22">
+          <animateMotion path="M0,0 H150 H0" dur="4s" repeatCount="indefinite"/>
+        </circle>
+
+        <polygon id="a_rotate" points="115,195 145,242 85,242">
+          <animateTransform attributeName="transform" type="rotate", from="0 115 226" to="360 115 226", dur="4s" repeatCount="indefinite"/>
+        </polygon>
+
+        <circle id="a_size" cx="115" cy="315" r="8">
+          <animate attributeName="r" values="8;32;8" dur="3s" repeatCount="indefinite"/>
+        </circle>
+
+        <g transform="translate(115,405)">
+          <path id="a_skew" d="M-50,-20 H50 V20 H-50 Z">
+            <animateTransform attributeName="transform" type="skewX", values="0;40;0;-40;0" dur="4s" repeatCount="indefinite"/>
+          </path>
+        </g>
+      </g>
+    </g>
+  </svg>
+</body>
+</html>
